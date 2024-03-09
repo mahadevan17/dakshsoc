@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hints | Daksh2024 </title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #two-input,
+        #content,
+        #finalans,
+        #mod26{
+          display: none;
+        }
+      </style>
+    
+
+</head>
+<body>
+    
+    <script src="valkey.js">  </script>    
+    <div id="logo-container">
+        <img src="logo.jpg" width="115px" id="logo">
+   </div>
+
+    <div id="nav">
+            <nav style="text-align: center;">
+            <a href="index.html">Home&nbsp;&nbsp;</a> 
+            <a href="Algo1.html">Go Back&nbsp;&nbsp;</a>         
+        </nav>
+    </div>
+    
+    
+    <div style="display: flex;">
+    <button id="but" type="submit" onclick="showDiv('two-input')">GATES</button>
+    <button id="but" type="submit" onclick="showDiv('content')">ALL ALGORITHMS DESCRIPTION</button>
+    <button id="but" type="submit" onclick="showDiv('finalans')">BINARY TO STRING CALCULATOR</button>
+    <button id="but" type="submit" onclick="showDiv('mod26')">MOD 26 CALCULATOR</button>
+    </div>
+
+
+
+    <div id="par" style="border: solid;">
+        <div id="two-input" style="margin:25px; ">
+           
+            <div><select id="dropdown" onchange="updateHeading(this.value)">
+                <option value="AND">AND</option>
+                <option value="OR">OR</option>
+                <option value="XOR">XOR</option>
+                <option value="NOR">NOR</option>
+                <option value="NAND">NAND</option>
+                <option value="XNOR">XNOR</option>
+            </select></div>            
+            <h2 id="heading">Selected GATE: AND </h2>                    
+                    Enter the input and get the output <br>
+                    <input type="hidden" id="selected-gate" value="AND">
+                    Input1:&nbsp;<input type="number" id="Input1" placeholder="Enter your value here"><br>
+                    Input2:&nbsp;<input type="number" id="Input2" placeholder="Enter your value here"><br>
+                    <button onclick="Calc()" >Submit</button> <br>
+                    output:&nbsp;<input type="text" id="outgate" placeholder="you will see your output here" readonly> <br>
+           
+        </div>
+    </div>
+
+    <div id="content" style="margin: 25px;border: solid;">
+        
+        <div id="c" style="margin: 10px;" >
+           <h3> DESCRIPTION of mod26:</h3><br>
+            y=x mod 26 means  y=remainder(x/26)<br>
+            when x is negative<br>
+            remove the negative sign<br>
+            y=26-remainder(x/26)  
+
+            <hr>
+            <div style="display: flex;">
+                <div>
+            <h3>1)CAESAR CIPHER: Shift the letters in cipher by N.</h3><br>
+            The <b>Decryption</b> can be represented using modular arithmetic by first transforming the letters into numbers, according to the scheme, A = 0, B = 1,…, Z = 25.<br> Encryption of a letter by a shift n can be described mathematically as.  
+For example, if the shift is 3, then the letter A would be replaced by the letter D, B would become E, C would become F, and so on.<b> The alphabet is wrapped around so that after A, it starts back at Z.</b><br>
+
+1)Write down the Ciphertext message:<b> KHOOR </b><br>
+2)Choose a shift value. In this case, we will use a shift of 3.<br>
+3)Replace each letter in the plaintext message with the letter that is three positions to the left in the alphabet.<br><br>
+
+<b>pt=(ct-N)mod26</b><br><br>
+    
+        <b>K</b> becomes  <b>H</b> (shift 3 from K)<br>
+
+        <b>H</b> becomes  <b>E</b> (shift 3 from H)<br>
+
+        <b>O</b> becomes  <b>L</b> (shift 3 from O)<br>
+
+        <b>O</b> becomes  <b>L</b> (shift 3 from O)<br>
+
+        <b>R</b> becomes  <b>O</b> (shift 3 from R)<br>
+
+    </div>
+    <div>
+        <img src="cc1.png" alt="image not found" ><a id="image" href="cc1.png">Image</a>When N=3
+    </div>
+    </div>
+            <br><br>
+<hr>
+            <h3>2)Vigenere Cipher: auto key generation<br></h3>
+            Steps for <b>Decrypting</b> Vigenere cipher<br>
+            1)Let assign a number to each character of the Text, like (a = 0, b = 1, c = 2, … z = 25).<br>
+            <b>Di = (Ei - Ki) mod 26</b><br>
+            Where Ei is the Encrypted Character and Ki is the Key Character.<br>
+            So, Di would be the Decrypted Character.<br>
+            Ciphertext :  GCYCZFMLYLEIM &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Keyword : AYUSH &nbsp;&nbsp;
+            (But keyword length should be equal to length of Ciphertext)<br>
+            keyword:&nbsp;&nbsp;&nbsp;&nbsp; AYUSHAYUSHAYU &nbsp;&nbsp;(Basically repeat the key until length matches)<br>
+            <br>
+            Now,<br> G=6 (from CipherText)<br> A=0 (Form keyword)<br>
+            put in formula so we get<br> D1= (6-0) mod 26 <br>
+            D1=6=>G
+
+            <br> C=2 (from CipherText)<br> Y=24 (Form keyword)<br>
+            put in formula so we get<br> D1= (2-24) mod 26 <br>
+            D2=4=>E<br> and so on .....  <br><br>
+
+<hr>
+            <h3>3)Playfair: make the table and solve<br></h3>
+            <div style="display: flex;">
+                <div>
+            Steps for <b>Decrypting</b> playfair cipher<br>
+            1)Generate the key Square(5*5) using key. For if KEY is MONARCHY (refer to the image1)<br>
+            2)Now split the cipher text in pairs of two<br>
+            <b><u>**IMPORTANT STEP :**</u></b><br>
+            3)check for the pairs in the generated table and follow the following rules <br>
+            <b><u>Rule 1)</u> If both the letters are in the same column:</b> Take the letter <b><u>above</u></b> each one (going back to the bottom if at the top).<br>
+            <b><u>Rule 2)</u> If both the letters are in the same row:</b>Take the letter to the <b><u>left</u></b> of each one (going back to the rightmost if at the leftmost position).<br>
+            <b><u>Rule 3)</u> If neither of the above rules is true:</b> i)<b>Form a rectangle</b> with the two letters and ii)take the letters on the <u><b>horizontal opposite corner of the rectangle</b></u>.
+                    Example:<br>
+        <u>CipherText:</u> "gatlmzclrqtx"<br><u>After Split:</u> 'ga' 'tl' 'mz' 'cl' 'rq' 'tx'<br><br>
+        --Take "cl" and check the table(Rule 1)<br>c -> m<br>l -> e<br> (refer to next image2)<br>
+        --Take "tl" and check the table(Rule 2)<br>t -> s<br>l -> t <br>(refer to next image3)<br>
+        --Take "rq" and check the table(Rule 3)<br> r -> n<br>q -> t <br>(refer to next image4)<br>
+        the final answer is <u>instrumentsz</u><br>
+    </div>
+
+        <div style="display: flex;flex-direction: column;">
+            <img src="pf1.png" alt="img not found"><a href="pf1.png" id="image" target="_blank">Image1</a>
+            <img src="pf2.png" alt="img not found" width="50%" height="50%"><a id="image" href="pf2.png" target="_blank">image2</a>
+            <img src="pf3.png" alt="img not found" width="50%" height="50%"><a id="image" href="pf3.png" target="_blank">image3</a>
+            <img src="pf4.png" alt="img not found" width="50%" height="50%"><a id="image" href="pf4.png" target="_blank">image4</a>
+        </div>
+            </div>
+            <br><br> <hr>           
+            <h3>4)Affine : Requires two keys a and b<br></h3>
+            <b>D ( x ) = a^-1 ( x - b ) mod 26 </b><br>
+                 
+            for Example purpose only
+            <img src="ac1.png" alt="not found" width="97%"><a href="ac1.png">Image</a><b><u>In the given image a=17 (17^-1=23), b=20</u></b>
+            <br><br>
+        </div>
+    </div>
+
+    <div id="finalans">
+        ENTER YOUR BINARY MESSAGE HERE<br>
+        Input:&nbsp;<input type="number" id="input"  placeholder="Enter your binary value here"><br>
+        <button onclick="calculate()" >Submit</button> <br>
+        Output:&nbsp;<input type="text" id="outans" placeholder="you will see your output here" readonly> <br>
+    </div>   
+
+    <div id="mod26">
+        ENTER YOUR BINARY MESSAGE HERE<br>
+        Input:&nbsp;<input type="number" id="input26"  placeholder="Enter number"><br>
+        <button onclick="mod26()" >Submit</button> <br>
+        Output:&nbsp;<input type="text" id="out26" placeholder="you will see your output" readonly> <br>
+    </div>   
+
+</body>
+</html>
